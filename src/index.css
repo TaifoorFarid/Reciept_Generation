@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@theme {
+  --font-cinzel: 'Cinzel', serif;
+  --font-mono: 'Space Mono', monospace, ui-monospace;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Remove default spinner arrows from number inputs */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif, 'Times New Roman';
+}
+
+/* Screen A4 Preview Frame (when Print Preview modal is active) */
+.a4-page-frame {
+  width: 210mm;
+  height: 297mm;
+  max-height: 297mm;
+  padding: 6mm 8mm;
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.a4-page-frame .receipt-outer-frame {
+  height: 100% !important;
+  max-height: 100% !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+}
+
+.a4-page-frame .receipt-inner-frame {
+  height: 100% !important;
+  max-height: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* ================= PRINT CSS: EXACT A4 PAGE ================= */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 6mm 8mm; /* Standard balanced printable margins */
+  }
+  
+  html, body {
+    width: 210mm !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    overflow: hidden !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-area {
+    box-shadow: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 283mm !important;
+    max-height: 283mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .receipt-outer-frame {
+    box-shadow: none !important;
+    border: 2px solid #15533e !important;
+    border-radius: 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    margin: 0 !important;
+    padding: 2mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    page-break-inside: avoid !important;
+    page-break-after: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .receipt-inner-frame {
+    border: 1.5px solid #15533e !important;
+    border-radius: 9px !important;
+    padding: 3mm 4.5mm !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    page-break-inside: avoid !important;
+    page-break-after: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .receipt-header {
+    flex-shrink: 0 !important;
+  }
+
+  .receipt-body {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 1.5mm 0 !important;
+  }
+
+  .receipt-footer {
+    flex-shrink: 0 !important;
+  }
+}
