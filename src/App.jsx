@@ -8,7 +8,6 @@ import {
   Trash2, 
   ArrowRight, 
   Printer, 
-  Cloud, 
   RefreshCw, 
   Search, 
   AlertTriangle, 
@@ -336,13 +335,7 @@ export default function App() {
             <div className="p-4 border-b border-slate-100 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <History className="w-5 h-5 text-[#15533e]" />
-                <div>
-                  <h3 className="font-bold text-sm text-slate-900">Saved Receipt Records ({savedSlips.length})</h3>
-                  <div className="flex items-center gap-1.5 text-[11px] text-emerald-700 font-medium">
-                    <Cloud className="w-3 h-3 text-emerald-600" />
-                    <span>Supabase Connected (receipt-generator)</span>
-                  </div>
-                </div>
+                <h3 className="font-bold text-sm text-slate-900">Saved Receipt Records ({savedSlips.length})</h3>
               </div>
               <div className="flex items-center gap-1">
                 <button
