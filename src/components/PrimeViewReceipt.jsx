@@ -96,38 +96,48 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
 
   return (
     <div className="receipt-outer-frame w-full max-w-[800px] mx-auto bg-white rounded-2xl border-2 border-[#15533e] p-2 sm:p-2.5 shadow-xl relative select-text flex flex-col">
-      <div className="receipt-inner-frame w-full bg-white rounded-xl border-[1.5px] border-[#15533e] px-5 sm:px-6 py-3 sm:py-3.5 text-slate-800 text-[12px] leading-tight flex-1 flex flex-col justify-between">
+      <div className="receipt-inner-frame w-full bg-white rounded-xl border-[1.5px] border-[#15533e] px-3 sm:px-6 py-3.5 sm:py-4.5 text-slate-800 text-[12px] leading-tight flex-1 flex flex-col justify-between">
       
       {/* ================= HEADER SECTION ================= */}
       <div className="receipt-header relative pb-1 flex-shrink-0">
-        <div className="flex items-start justify-between gap-2">
+        {/* Mobile: stack logo + title + badge vertically; sm+: horizontal */}
+        <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-2">
           
-          {/* Left: Prime View Society Emblem Logo */}
-          <div className="w-20 sm:w-24 flex-shrink-0 pt-0.5 flex flex-col items-center">
+          {/* Top row on mobile: left logo + right badge */}
+          <div className="flex w-full sm:w-auto sm:flex-shrink-0 items-center justify-between sm:justify-start sm:flex-col sm:items-center sm:pt-0.5">
             <img 
               src="/assets/prime-view-official-logo.png" 
               alt="Prime View Emblem" 
-              className="h-16 sm:h-20 w-auto object-contain"
+              className="h-14 sm:h-20 w-auto object-contain"
               onError={(e) => {
                 e.target.style.display = 'none';
               }}
             />
+            {/* Badge shown here on mobile only */}
+            <div className="sm:hidden border border-slate-400 rounded-full px-2 py-0.5 bg-slate-50/80 text-center">
+              <span className="block font-bold text-[9px] text-slate-800 leading-tight uppercase tracking-wider">
+                {copyType}
+              </span>
+              <span className="block text-[7px] text-slate-500 font-semibold tracking-tight">
+                (OFFICIAL VERIFIED RECEIPT)
+              </span>
+            </div>
           </div>
 
           {/* Center: Society Information Letterhead */}
-          <div className="flex-1 text-center px-1">
-            <h1 className="font-cinzel text-lg sm:text-[22px] font-black tracking-wide text-[#15533e] uppercase leading-tight">
+          <div className="flex-1 text-center px-1 w-full sm:w-auto">
+            <h1 className="font-cinzel text-base sm:text-[22px] font-black tracking-wide text-[#15533e] uppercase leading-tight">
               PRIME VIEW COOPERATIVE
             </h1>
-            <h2 className="font-cinzel text-base sm:text-[18px] font-bold tracking-widest text-[#15533e] uppercase leading-tight mb-1">
+            <h2 className="font-cinzel text-sm sm:text-[18px] font-bold tracking-widest text-[#15533e] uppercase leading-tight mb-1">
               HOUSING SOCIETY
             </h2>
 
-            <div className="text-[10px] sm:text-[11px] text-slate-700 space-y-0.5 font-medium">
-              <p>
+            <div className="text-[9.5px] sm:text-[11px] text-slate-700 space-y-0.5 font-medium">
+              <p className="break-words">
                 <span className="font-bold text-slate-900">Head Office:</span> House No. CB-946/2, Near Silk Plaza, Supply, Abbottabad
               </p>
-              <p>
+              <p className="break-words">
                 <span className="font-bold text-slate-900">Site Office:</span> Rajoiya Road, Near Bypass Havelian, Abbottabad
               </p>
               <p className="font-semibold text-slate-900">
@@ -136,29 +146,29 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
             </div>
 
             {/* Decorative Ornamental Divider */}
-            <div className="flex justify-center items-center my-1">
+            <div className="flex justify-center items-center my-1.5">
               <svg width="34" height="10" viewBox="0 0 40 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 6L10 2L20 10L30 2L38 6" stroke="#b48c48" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
           </div>
 
-          {/* Right: Co-operative Department Logo & Copy Badge */}
-          <div className="w-20 sm:w-24 flex-shrink-0 flex flex-col items-center pt-0.5 text-center">
+          {/* Right: Co-operative Logo + badge — hidden on mobile (badge moved above) */}
+          <div className="hidden sm:flex w-24 flex-shrink-0 flex-col items-center pt-0.5 text-center">
             <img 
               src="/assets/coop-official-logo.png" 
               alt="Co-operative Department KPK" 
-              className="h-12 sm:h-14 w-auto object-contain mb-1"
+              className="h-14 w-auto object-contain mb-1"
               onError={(e) => {
                 e.target.style.display = 'none';
               }}
             />
             
             <div className="border border-slate-400 rounded-full px-2 py-0.5 w-full max-w-[110px] bg-slate-50/80">
-              <span className="block font-bold text-[9px] sm:text-[10px] text-slate-800 leading-tight uppercase tracking-wider">
+              <span className="block font-bold text-[10px] text-slate-800 leading-tight uppercase tracking-wider">
                 {copyType}
               </span>
-              <span className="block text-[7px] sm:text-[8px] text-slate-500 font-semibold tracking-tight">
+              <span className="block text-[8px] text-slate-500 font-semibold tracking-tight">
                 (OFFICIAL VERIFIED RECEIPT)
               </span>
             </div>
@@ -166,7 +176,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
         </div>
 
         {/* PAYMENT RECEIPT Oval Ribbon Banner */}
-        <div className="flex items-center justify-center my-2 relative">
+        <div className="flex items-center justify-center my-2.5 relative">
           <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[1px] bg-[#c59b27]/70"></div>
           <div className="relative px-6 py-0.5 rounded-full bg-[#e8f2eb] border border-[#a6ceb7]">
             <span className="font-cinzel text-xs sm:text-[13px] font-black tracking-widest text-[#15533e] uppercase">
@@ -177,11 +187,11 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
       </div>
 
       {/* ================= FORM BODY (SECTIONS 1 TO 5) ================= */}
-      <div className="receipt-body flex-1 flex flex-col justify-between py-0.5 space-y-1">
+      <div className="receipt-body flex-1 flex flex-col justify-between py-1 space-y-2">
 
       {/* ================= SECTION 1: RECEIPT DETAILS ================= */}
-      <div className="my-2">
-        <div className="bg-[#e8f2eb] border border-[#bcdbc8] rounded px-2.5 py-0.5 flex items-center gap-1.5 mb-1.5">
+      <div className="my-1.5 sm:my-2">
+        <div className="bg-[#e8f2eb] border border-[#bcdbc8] rounded px-2.5 py-1 flex items-center gap-1.5 mb-2">
           <Receipt className="w-3.5 h-3.5 text-[#15533e]" />
           <span className="text-[10.5px] font-black uppercase tracking-wider text-[#15533e]">
             RECEIPT DETAILS
@@ -199,7 +209,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
               value={data.receiptNo || ''}
               onChange={(e) => updateField('receiptNo', e.target.value)}
               placeholder="PV-SLIP-2026-5370"
-              className="flex-1 px-2.5 py-0.5 bg-white border border-slate-300 rounded font-mono font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+              className="flex-1 px-2.5 py-1 bg-white border border-slate-300 rounded font-mono font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-emerald-600"
             />
           </div>
 
@@ -217,7 +227,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
                 value={data.receiptDate || ''}
                 onChange={(e) => updateField('receiptDate', e.target.value)}
                 placeholder="13/11/2026"
-                className="w-full px-2.5 py-0.5 pr-7 bg-white border border-slate-300 rounded font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+                className="w-full px-2.5 py-1 pr-7 bg-white border border-slate-300 rounded font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-emerald-600"
               />
               <button
                 type="button"
@@ -246,18 +256,18 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
       </div>
 
       {/* ================= SECTION 2: PAYMENT RECEIVED IN ================= */}
-      <div className="my-2">
-        <div className="bg-[#e8f2eb] border border-[#bcdbc8] rounded px-2.5 py-0.5 flex items-center gap-1.5 mb-1.5">
+      <div className="my-1.5 sm:my-2">
+        <div className="bg-[#e8f2eb] border border-[#bcdbc8] rounded px-2.5 py-1 flex items-center gap-1.5 mb-2">
           <CreditCard className="w-3.5 h-3.5 text-[#15533e]" />
           <span className="text-[10.5px] font-black uppercase tracking-wider text-[#15533e]">
             PAYMENT RECEIVED IN
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-2 px-1 items-start text-[11.5px]">
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 px-1 items-start text-[11.5px]">
           
           {/* Left: Cash, Bank, Cheque Checkboxes */}
-          <div className="md:col-span-4 flex items-center justify-between sm:justify-start sm:gap-4 pt-1">
+          <div className="sm:col-span-4 flex items-center justify-start gap-4 pt-1.5 flex-wrap">
             {[
               { id: 'Cash', label: 'Cash' },
               { id: 'Bank', label: 'Bank' },
@@ -282,7 +292,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
           </div>
 
           {/* Right: Bank Name, Account Name (Changed from Ref), Deposit Date */}
-          <div className="md:col-span-8 space-y-1.5 border-t md:border-t-0 md:border-l md:border-slate-200 md:pl-3 pt-1 md:pt-0">
+          <div className="sm:col-span-8 space-y-2.5 border-t sm:border-t-0 sm:border-l sm:border-slate-200 sm:pl-3 pt-2 sm:pt-0">
             <div className="flex items-center gap-2">
               <Building2 className="w-3.5 h-3.5 text-[#15533e] flex-shrink-0" />
               <span className="font-bold text-slate-700 min-w-[95px]">
@@ -294,7 +304,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
                 value={data.bankName || ''}
                 onChange={(e) => updateField('bankName', e.target.value)}
                 placeholder="Bank Name"
-                className="flex-1 border-b border-slate-300 pb-0.5 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
+                className="flex-1 border-b border-slate-300 pb-1 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
               />
             </div>
 
@@ -309,7 +319,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
                 value={data.accountName || ''}
                 onChange={(e) => updateField('accountName', e.target.value)}
                 placeholder="Account Name"
-                className="flex-1 border-b border-slate-300 pb-0.5 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
+                className="flex-1 border-b border-slate-300 pb-1 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
               />
             </div>
 
@@ -324,7 +334,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
                   value={data.depositDate || ''}
                   onChange={(e) => updateField('depositDate', e.target.value)}
                   placeholder="13/11/2026"
-                  className="w-full border-b border-slate-300 pb-0.5 px-1 pr-6 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
+                  className="w-full border-b border-slate-300 pb-1 px-1 pr-6 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
                 />
                 <button
                   type="button"
@@ -356,15 +366,15 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
 
       {/* ================= SECTION 3: MEMBER DETAILS ================= */}
       {/* Note: 'Membership No.' was removed as requested */}
-      <div className="my-2">
-        <div className="bg-[#e8f2eb] border border-[#bcdbc8] rounded px-2.5 py-0.5 flex items-center gap-1.5 mb-1.5">
+      <div className="my-1.5 sm:my-2">
+        <div className="bg-[#e8f2eb] border border-[#bcdbc8] rounded px-2.5 py-1 flex items-center gap-1.5 mb-2">
           <User className="w-3.5 h-3.5 text-[#15533e]" />
           <span className="text-[10.5px] font-black uppercase tracking-wider text-[#15533e]">
             MEMBER DETAILS
           </span>
         </div>
 
-        <div className="space-y-1.5 px-1 text-[11.5px]">
+        <div className="space-y-2.5 px-1 text-[11.5px]">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {/* Member Name */}
             <div className="flex items-center gap-1.5">
@@ -377,7 +387,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
                 value={data.memberName || ''}
                 onChange={(e) => updateField('memberName', e.target.value)}
                 placeholder="Member Name"
-                className="flex-1 border-b border-slate-300 pb-0.5 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
+                className="flex-1 border-b border-slate-300 pb-1 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
               />
             </div>
 
@@ -392,7 +402,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
                 value={data.guardianName || ''}
                 onChange={(e) => updateField('guardianName', e.target.value)}
                 placeholder="Father's / Husband's Name"
-                className="flex-1 border-b border-slate-300 pb-0.5 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
+                className="flex-1 border-b border-slate-300 pb-1 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
               />
             </div>
           </div>
@@ -409,7 +419,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
                 value={data.cnicNo || ''}
                 onChange={(e) => updateField('cnicNo', e.target.value)}
                 placeholder="XXXXX-XXXXXXX-X"
-                className="flex-1 border-b border-slate-300 pb-0.5 px-1 bg-transparent text-slate-800 font-mono font-medium focus:outline-none focus:border-emerald-600"
+                className="flex-1 border-b border-slate-300 pb-1 px-1 bg-transparent text-slate-800 font-mono font-medium focus:outline-none focus:border-emerald-600"
               />
             </div>
             <div className="hidden sm:block"></div>
@@ -418,15 +428,15 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
       </div>
 
       {/* ================= SECTION 4: PROPERTY DETAILS ================= */}
-      <div className="my-2">
-        <div className="bg-[#e8f2eb] border border-[#bcdbc8] rounded px-2.5 py-0.5 flex items-center gap-1.5 mb-1.5">
+      <div className="my-1.5 sm:my-2">
+        <div className="bg-[#e8f2eb] border border-[#bcdbc8] rounded px-2.5 py-1 flex items-center gap-1.5 mb-2">
           <Home className="w-3.5 h-3.5 text-[#15533e]" />
           <span className="text-[10.5px] font-black uppercase tracking-wider text-[#15533e]">
             PROPERTY DETAILS
           </span>
         </div>
 
-        <div className="space-y-1.5 px-1 text-[11.5px]">
+        <div className="space-y-2.5 px-1 text-[11.5px]">
           {/* Row 1: Plot No & Block */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="flex items-center gap-1.5">
@@ -439,7 +449,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
                 value={data.plotNo || ''}
                 onChange={(e) => updateField('plotNo', e.target.value)}
                 placeholder="Plot No."
-                className="flex-1 border-b border-slate-300 pb-0.5 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
+                className="flex-1 border-b border-slate-300 pb-1 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
               />
             </div>
 
@@ -453,12 +463,12 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
                 value={data.block || ''}
                 onChange={(e) => updateField('block', e.target.value)}
                 placeholder="Block"
-                className="flex-1 border-b border-slate-300 pb-0.5 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
+                className="flex-1 border-b border-slate-300 pb-1 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
               />
             </div>
           </div>
 
-          {/* Row 2: Plot Size & Plot Type */}
+          {/* Row 2: Plot Size */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="flex items-center gap-1.5">
               <span className="font-bold text-slate-700 whitespace-nowrap min-w-[55px]">
@@ -470,59 +480,61 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
                 value={data.plotSize || ''}
                 onChange={(e) => updateField('plotSize', e.target.value)}
                 placeholder="Plot Size"
-                className="flex-1 border-b border-slate-300 pb-0.5 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
+                className="flex-1 border-b border-slate-300 pb-1 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
               />
             </div>
+            <div className="hidden sm:block"></div>
+          </div>
 
-            <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="font-bold text-slate-700 whitespace-nowrap min-w-[55px]">
-                Plot Type
-              </span>
-              <span className="text-slate-400 font-bold">:</span>
-              <div className="flex items-center gap-2 flex-wrap text-[11px]">
-                {['Residential', 'Commercial', 'Farm Houses'].map((type) => {
-                  const isChecked = (data.plotType || 'Residential') === type;
-                  return (
-                    <label
-                      key={type}
-                      className="inline-flex items-center gap-1 cursor-pointer select-none font-semibold text-slate-800"
-                      onClick={() => updateField('plotType', type)}
-                    >
-                      <div className={`w-3.5 h-3.5 rounded-sm border flex items-center justify-center ${
-                        isChecked ? 'bg-[#15533e] border-[#15533e] text-white' : 'border-slate-400 bg-white'
-                      }`}>
-                        {isChecked && <Check className="w-2.5 h-2.5 stroke-[3]" />}
-                      </div>
-                      <span className={type === 'Residential' ? 'font-bold' : ''}>
-                        {type}
-                      </span>
-                    </label>
-                  );
-                })}
-              </div>
+          {/* Row 3: Plot Type */}
+          <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
+            <span className="font-bold text-slate-700 whitespace-nowrap min-w-[55px]">
+              Plot Type
+            </span>
+            <span className="text-slate-400 font-bold">:</span>
+            <div className="flex items-center gap-3 sm:gap-4 flex-wrap text-[11px]">
+              {['Residential', 'Commercial', 'Farm Houses'].map((type) => {
+                const isChecked = (data.plotType || 'Residential') === type;
+                return (
+                  <label
+                    key={type}
+                    className="inline-flex items-center gap-1 cursor-pointer select-none font-semibold text-slate-800"
+                    onClick={() => updateField('plotType', type)}
+                  >
+                    <div className={`w-3.5 h-3.5 rounded-sm border flex items-center justify-center ${
+                      isChecked ? 'bg-[#15533e] border-[#15533e] text-white' : 'border-slate-400 bg-white'
+                    }`}>
+                      {isChecked && <Check className="w-2.5 h-2.5 stroke-[3]" />}
+                    </div>
+                    <span className={type === 'Residential' ? 'font-bold' : ''}>
+                      {type}
+                    </span>
+                  </label>
+                );
+              })}
             </div>
           </div>
         </div>
       </div>
 
       {/* ================= SECTION 5: PAYMENT DETAILS ================= */}
-      <div className="my-2">
-        <div className="bg-[#e8f2eb] border border-[#bcdbc8] rounded px-2.5 py-0.5 flex items-center gap-1.5 mb-1.5">
+      <div className="my-1.5 sm:my-2">
+        <div className="bg-[#e8f2eb] border border-[#bcdbc8] rounded px-2.5 py-1 flex items-center gap-1.5 mb-2">
           <FileText className="w-3.5 h-3.5 text-[#15533e]" />
           <span className="text-[10.5px] font-black uppercase tracking-wider text-[#15533e]">
             PAYMENT DETAILS
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-1 py-1 text-[11.5px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 px-1 py-1 text-[11.5px]">
           
           {/* Left Column: PAYMENT CATEGORY */}
           <div>
-            <h4 className="font-black text-[11px] text-slate-800 uppercase tracking-wider mb-1.5">
+            <h4 className="font-black text-[11px] text-slate-800 uppercase tracking-wider mb-2">
               PAYMENT CATEGORY
             </h4>
 
-            <div className="grid grid-cols-2 gap-y-1.5 gap-x-2">
+            <div className="grid grid-cols-2 gap-y-2 gap-x-2">
               {[
                 'Installment',
                 'Full settlement',
@@ -550,7 +562,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
             </div>
 
             {/* Other Specify field */}
-            <div className="mt-2 flex items-center gap-1.5">
+            <div className="mt-2.5 flex items-center gap-1.5">
               <span className="font-bold text-slate-700 whitespace-nowrap">
                 Other Specify:
               </span>
@@ -559,19 +571,19 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
                 value={data.otherCategorySpecify || ''}
                 onChange={(e) => updateField('otherCategorySpecify', e.target.value)}
                 placeholder="Specify payment category..."
-                className="flex-1 border-b border-slate-300 pb-0.5 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
+                className="flex-1 border-b border-slate-300 pb-1 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
               />
             </div>
           </div>
 
           {/* Right Column: MEMBERSHIP PLAN (with Token Fee added!) */}
-          <div className="border-t md:border-t-0 md:border-l md:border-slate-200 md:pl-4 pt-2 md:pt-0">
-            <h4 className="font-black text-[11px] text-slate-800 uppercase tracking-wider mb-1.5">
+          <div className="border-t sm:border-t-0 sm:border-l sm:border-slate-200 sm:pl-4 pt-2 sm:pt-0">
+            <h4 className="font-black text-[11px] text-slate-800 uppercase tracking-wider mb-2">
               MEMBERSHIP PLAN
             </h4>
 
             {/* Checkboxes: Full Payment, Installments, Token Fee (New!) */}
-            <div className="flex items-center flex-wrap gap-3 mb-2">
+            <div className="flex items-center flex-wrap gap-3 mb-2.5">
               {[
                 'Full Payment',
                 'Installments',
@@ -598,7 +610,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
             </div>
 
             {/* On Account Of */}
-            <div className="flex items-center gap-1.5 mt-2">
+            <div className="flex items-center gap-1.5 mt-2.5">
               <span className="font-bold text-slate-700 whitespace-nowrap min-w-[85px]">
                 On Account Of
               </span>
@@ -608,7 +620,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
                 value={data.onAccountOf || ''}
                 onChange={(e) => updateField('onAccountOf', e.target.value)}
                 placeholder="On Account Of"
-                className="flex-1 border-b border-slate-300 pb-0.5 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
+                className="flex-1 border-b border-slate-300 pb-1 px-1 bg-transparent text-slate-800 font-medium focus:outline-none focus:border-emerald-600"
               />
             </div>
           </div>
@@ -616,7 +628,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
         </div>
 
         {/* BOTTOM ROW: Amount Received (Number) & IN WORDS (Automatic English Conversion) */}
-        <div className="mt-2.5 p-2.5 bg-[#e8f2eb] border border-[#bcdbc8] rounded-lg flex flex-col md:flex-row items-center justify-between gap-3">
+        <div className="mt-3 p-3 bg-[#e8f2eb] border border-[#bcdbc8] rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           
           {/* Left: Amount Received Number Input */}
           <div className="flex items-center gap-2 w-full md:w-auto">
@@ -629,7 +641,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
                 Amount Received
               </span>
               
-              <div className="flex items-center bg-white border border-slate-300 rounded px-2 py-0.5">
+              <div className="flex items-center bg-white border border-slate-300 rounded px-2 py-1">
                 <span className="font-black text-xs text-slate-700 mr-1">PKR</span>
                 <input
                   type="text"
@@ -649,7 +661,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
           </div>
 
           {/* Right: IN WORDS (Automatically converted!) */}
-          <div className="w-full md:flex-1 md:pl-3 border-t md:border-t-0 md:border-l md:border-[#bcdbc8] pt-1.5 md:pt-0">
+          <div className="w-full sm:flex-1 sm:pl-3 border-t sm:border-t-0 sm:border-l sm:border-[#bcdbc8] pt-1.5 sm:pt-0">
             <div className="text-[9.5px] font-black uppercase tracking-wider text-slate-500 mb-0.5">
               IN WORDS
             </div>
@@ -663,7 +675,7 @@ export default function PrimeViewReceipt({ data, onChange, copyType = 'MEMBER CO
       </div>
 
       {/* ================= FOOTER (CENTER ALIGNED & NO-BREAK FORMATTING) ================= */}
-      <div className="receipt-footer mt-2 pt-1.5 border-t border-slate-300 text-center font-sans text-slate-700 flex-shrink-0">
+      <div className="receipt-footer mt-2.5 pt-2 border-t border-slate-300 text-center font-sans text-slate-700 flex-shrink-0">
         <h4 className="font-cinzel text-[11.5px] sm:text-xs font-black tracking-wide text-slate-900 uppercase mb-1">
           PRIME VIEW COOPERATIVE HOUSING SOCIETY LIMITED
         </h4>

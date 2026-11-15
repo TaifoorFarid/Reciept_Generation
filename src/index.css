@@ -30,18 +30,31 @@
 }
 
 /* Screen A4 Preview Frame (when Print Preview modal is active) */
+.a4-preview-scaler {
+  /* Wrapper that holds the fixed A4 frame and scales it to fit the viewport */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  /* Height = scaled A4 height; JS sets --a4-scale via inline style */
+  height: calc(297mm * var(--a4-scale, 1));
+}
+
 .a4-page-frame {
+  /* True A4 dimensions — never changes */
   width: 210mm;
   height: 297mm;
-  max-height: 297mm;
+  flex-shrink: 0;
   padding: 6mm 8mm;
-  margin: 0 auto;
   background: white;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   overflow: hidden;
+  /* Scale down to fit viewport without clipping */
+  transform-origin: top center;
+  transform: scale(var(--a4-scale, 1));
 }
 
 .a4-page-frame .receipt-outer-frame {
@@ -145,5 +158,32 @@
 
   .receipt-footer {
     flex-shrink: 0 !important;
+  }
+}
+
+/* ================= MOBILE RESPONSIVE OVERRIDES ================= */
+@media (max-width: 640px) {
+  /* Ensure the receipt card doesn't overflow the screen */
+  .receipt-outer-frame {
+    border-radius: 12px !important;
+  }
+
+  /* Make inputs more touch-friendly on mobile */
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    font-size: 16px !important; /* Prevents iOS auto-zoom on input focus */
+  }
+
+  /* Scale down the receipt body text a touch on very small screens */
+  .receipt-inner-frame {
+    font-size: 11px !important;
+  }
+
+  /* Ensure the Amount field is tappable */
+  .receipt-inner-frame input[type="text"],
+  .receipt-inner-frame input[type="number"] {
+    min-height: 28px;
   }
 }
